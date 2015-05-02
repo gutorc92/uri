@@ -2,7 +2,9 @@
 
 problem=$1;
 
-echo "$problem"; 
+echo "$problem";
+
+git checkout -b "$problem"; 
 
 if [ ! -d "$problem" ];
 then
