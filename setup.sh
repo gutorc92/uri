@@ -1,24 +1,29 @@
 #!/bin/sh
 
 problem=$1;
-
-if $# = 2
+gityes=1
+if [ "$#" -eq 2 ];
 then
-	gityes=$(echo "$*"| egrep "-s");
-	echo "Git yes: $gityes\n";
+    echo $@ > /tmp/checkoptions
+    result=$(egrep -o "(-s)" /tmp/checkoptions)
+    if [ $result = "-s" ];
+    then
+        gityes=0
+    fi
+    rm /tmp/checkoptions
 fi
 
-echo "$problem";
-echo "$*";
-
-git checkout -b "$problem"; 
+if [ $gityes -eq 1 ];
+then
+    git checkout -b "$problem";
+fi 
 
 if [ ! -d "$problem" ];
 then
 	mkdir "$problem";
 	cp base.cpp "$problem/$problem.cpp";
 	sed s/namefile/$problem.cpp/g Makefile >> $problem/Makefile
-	else
+else
 	echo "File already exists";	
 fi
  
