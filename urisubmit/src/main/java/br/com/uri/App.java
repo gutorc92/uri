@@ -25,46 +25,22 @@ public class App
 			file = args[0];
 			problemId = args[1];
 
-		}else if(args.length == 1){
-			file = args[0];
-			
-		}else if(args.length == 0){
+		}else if(args.length < 2){
 			System.out.println("It needs a less one argument ");
 			System.exit(1);
 			
 		}
 		
-		System.out.println(System.getProperty("user.dir"));
-		
-		
+		String email = "gutorc@hotmail.com";
+		String password = "16eb93b2";
 		
 
-		Properties properties = null;
-		try {
-			new ReadFile(System.getProperty("user.dir")).readUriConfigurationFile(properties);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		}
-//		String email = "gutorc@hotmail.com";
-//		String password = "16eb93b2";
-		
-		String email = properties.getProperty("email");
-		String password = properties.getProperty("password");
-		
-		System.exit(0);
 		
 		System.out.println( "Starting to submit your problem" );
 
 		ReadFile read = new ReadFile(file);
 		WebDriver driver = new FirefoxDriver();
 
-		// And now use this to visit Google
 		driver.get("https://www.urionlinejudge.com.br/judge/login");
 
 		//Login in uri
@@ -83,9 +59,12 @@ public class App
 		paste.setClipboardContents();
 		submit.pasteSolution();
 
+		System.out.println("Your problem");
 		System.out.println(paste.getClipboardContents());
 
 		submit.submit();
+		
+		System.out.println("You just need to check Uri Submissions page now");
 		
 		driver.quit();
 
