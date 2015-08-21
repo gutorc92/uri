@@ -1,12 +1,15 @@
 package br.com.uri;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.Keys;
 
@@ -33,6 +36,17 @@ public class ReadFile {
 			}
 		}
 		
+	}
+	
+	public void readUriConfigurationFile(Properties proparties) throws IOException,FileNotFoundException{
+		String configurationUriFile = path + "/uriconfigurationfile";
+		System.out.println(configurationUriFile);
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(configurationUriFile);
+		if(inputStream != null){
+			proparties.load(inputStream);
+		}else{
+			throw new FileNotFoundException("The file with your user and password of Uri cannot be found.");
+		}
 	}
 	
 	public String getText(){

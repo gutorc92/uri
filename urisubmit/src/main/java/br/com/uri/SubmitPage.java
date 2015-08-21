@@ -1,6 +1,7 @@
 package br.com.uri;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -28,6 +29,12 @@ public class SubmitPage {
 		WebElement pre = driver.findElement(By.id("editor"));
 		WebElement textArea = pre.findElement(By.tagName("textarea"));
 		textArea.clear();
+	}
+	
+	public void pasteSolution(){
+		WebElement pre = driver.findElement(By.id("editor"));
+		WebElement textArea = pre.findElement(By.tagName("textarea"));
+		textArea.sendKeys(Keys.chord(Keys.CONTROL,"v"));
 	}
 	
 	public void setSolution(String solution){
