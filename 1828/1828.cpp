@@ -62,7 +62,7 @@ int main(int argc, char * argv[]){
     cin >> t;
     for(int i = 1; i <= t; i++){
         cin >> op1 >> op2;
-        cout << "Caso #" << i <<": " << getAnswer(op1,op2); 
+        cout << "Caso #" << i <<": " << getAnswer(op1,op2) << endl; 
     }
     	
 }
