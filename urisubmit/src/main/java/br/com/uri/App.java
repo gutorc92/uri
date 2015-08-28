@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import br.com.uri.submit.ReadConfigurationFile;
+
 
 /**
  * Hello world!
@@ -38,26 +40,14 @@ public class App
 		
 		
 		
-
-		Properties properties = null;
-		try {
-			new ReadFile(System.getProperty("user.dir")).readUriConfigurationFile(properties);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		}
-//		String email = "gutorc@hotmail.com";
-//		String password = "16eb93b2";
+		ReadConfigurationFile readConfiguration = new ReadConfigurationFile(System.getProperty("user.dir"));
+		readConfiguration.readUriConfigurationFile();
 		
-		String email = properties.getProperty("email");
-		String password = properties.getProperty("password");
+		System.out.println("Main: " + readConfiguration.getEmail() + " " + readConfiguration.getPassword());
 		
-		System.exit(0);
+		String email = readConfiguration.getEmail(); 
+		String password = readConfiguration.getPassword();
+		
 		
 		System.out.println( "Starting to submit your problem" );
 

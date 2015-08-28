@@ -38,6 +38,7 @@ public class ReadFile {
 		
 	}
 	
+	
 	public void readUriConfigurationFile(Properties proparties) throws IOException,FileNotFoundException{
 		String configurationUriFile = path + "/uriconfigurationfile";
 		System.out.println(configurationUriFile);
