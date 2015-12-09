@@ -1,0 +1,70 @@
+#include<iostream>
+#include<cmath>
+#include<stdio.h>
+#include<algorithm>
+#include<map>
+
+using namespace std;
+
+int p[50002];
+int rak[50002];
+
+int findSet(int i) { return (p[i] == i) ? i : (p[i] = findSet(p[i])); }
+bool isSameSet(int i, int j) { return findSet(i) == findSet(j); }
+void unionSet(int i, int j) {
+    if (!isSameSet(i, j)) {
+        // if from different set
+        int x = findSet(i), y = findSet(j);
+        if (rak[x] > rak[y]){ 
+            p[y] = x;
+        // rak keeps the tree short
+        }else {
+            p[x] = y;
+        }
+        if (rak[x] == rak[y]){ rak[y]++; }
+    } 
+};
+
+int main(int argc, char * argv[]){
+    map<string,int> names;
+    string n1,n2;
+    int count = 0;
+    int x1,x2;
+    for(int i = 0; i < 50002; i++){
+        p[i] = i;
+        rak[i] = 0;
+    }
+    while(cin >> n1 >> n2){
+//cout << n1 << " " << n2 << endl;
+        if(names.count(n1) == 0){
+            names[n1] = count;
+            x1 = count;
+            count++;
+        }else{
+            x1 = names[n1];
+        }
+        if(names.count(n2) == 0){
+            names[n2] = count;
+            x2 = count;
+            count++;
+        }else{
+            x2 = names[n2];
+        }
+//cout << x1 << " " << x2 << endl;
+        unionSet(x2,x1);
+    }
+    map<int,int> values;
+    for(int i = 0; i < (int)names.size(); i++){
+        if(p[i] == i){
+            values[i] = rak[i]; 
+        }
+    }
+    std::pair<string,int> highest = *names.rbegin();          // last element
+    cout << "HALL OF MURDERERS" << endl;
+    std::map<string,int>::iterator it = names.begin();
+    do {
+        if(values.count(it->second)){
+            cout << it->first << " " << values[it->second] << endl;
+        }
+    } while ( names.value_comp()(*it++, highest) );
+}
