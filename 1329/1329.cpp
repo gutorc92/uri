@@ -5,8 +5,9 @@
 using namespace std;
 
 int main(int argc, char * argv[]){
+    int n,n1, mary = 0, john = 0;
+
     while(1){
-        int n,n1, mary = 0, john = 0;
         std::cin >> n;
         if(n == 0) break;
         for(int i = 0; i < n; i++){
@@ -17,7 +18,8 @@ int main(int argc, char * argv[]){
                 john++;
             }
         }
-        std::cout << "Mary won " << mary << " times and John won " << john  << " times";
-        
-	}
+        std::cout << "Mary won " << mary << " times and John won " << john  << " times" << std::endl;
+    	mary = 0; 
+	john = 0;
+    }
 }
