@@ -35,21 +35,20 @@ int main(int argc, char * argv[]){
 				count[ind(linha[j])]++;
 			}
 		}
-        int max = -1;
+        int frase = 0;
         for(int j = 0; j < 26; j++){
-            if(count[j] > max){
-                max = count[j];
-            }
-            //std::cout << "letra " << l + j << " " << count[j] << std::endl;
-        }
-        
-        for(int j = 0; j < 26; j++){
-            if(count[j] == max){
-                printf("%c", (char)(97+j));
+            if(count[j] > 0){
+                frase++;
             }
         }
-        std::cout << std::endl;
-		//cin.clear();
+       
+        if(frase == 26){
+            std::cout << "frase completa" << std::endl;
+        }else if(frase > 13){
+            std::cout << "frase quase completa" << std::endl;
+        }else{
+            std::cout << "frase mal elaborada" << std::endl;
+        } 
 		
 		
 	}
