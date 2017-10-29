@@ -4,7 +4,7 @@
 #include<algorithm>
 using namespace std;
 
-char alf[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z'};
+char alf[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 int pos(char a){
     for(int i = 0; i < 26; i++){
@@ -30,9 +30,9 @@ int main(int argc, char * argv[]){
             if( l - d >= 0){
                 l = l - d;
             }else{
-                l = 26 - (d - l);
+                l = (26 + l) - d;
             }
-            //std::cout << " " <<  l << std::endl;
+            //std::cout << l << " ";;
             std::cout << alf[l];
         }
         std::cout << std::endl;
