@@ -7,6 +7,7 @@ using namespace std;
 int main(int argc, char * argv[]){
     int n;
     std::cin >> n;
+    //std::cout << n;
     int t[1000001];
     int v[1000001];
     std::fill(v, v+100001, -1);
@@ -33,7 +34,8 @@ int main(int argc, char * argv[]){
         if(j < 0 || j >= n) break;
         //std::cout << "j= " <<  j << std::endl;
     }	
-    int total = 0, qtde = 0;
+    long int total = 0; 
+    int qtde = 0;
     for(int i = 0; i < n; i++){
         //std::cout << t[i] << " ";
         total += t[i];
